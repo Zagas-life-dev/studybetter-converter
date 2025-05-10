@@ -106,16 +106,6 @@ export function PdfUploadForm() {
     e.stopPropagation()
   }
 
-  // Function to determine the correct API endpoint based on environment
-  const getApiEndpoint = () => {
-    // Check if we're in a Netlify environment
-    if (typeof window !== 'undefined' && window.location.hostname.includes('netlify.app')) {
-      return "/.netlify/functions/api";
-    }
-    // Otherwise use the Next.js API route (works on Vercel and local development)
-    return "/api/analyze";
-  };
-
   // Update the handleSubmit function to better handle errors
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -139,10 +129,7 @@ export function PdfUploadForm() {
       setProcessingStep("Processing with OCR")
       setProgress(30)
 
-      const apiEndpoint = getApiEndpoint();
-      console.log(`Using API endpoint: ${apiEndpoint}`);
-      
-      const response = await fetch(apiEndpoint, {
+      const response = await fetch("/api/analyze", {
         method: "POST",
         body: formData,
       })
