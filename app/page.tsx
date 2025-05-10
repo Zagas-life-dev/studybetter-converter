@@ -11,8 +11,7 @@ export default function Home() {
             properly formatted.
           </p>
           <p className="text-sm text-muted-foreground mt-2">
-            Powered by Mistral AI Agent with OCR technology for accurate document analysis. Download your results as
-            formatted PDFs with Study Better branding.
+            
           </p>
         </div>
         <PdfUploadForm />
