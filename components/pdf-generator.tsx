@@ -475,6 +475,65 @@ export function PdfGenerator({ markdown, fileName, taskType }: PdfGeneratorProps
           color: #000000;
         }
         
+        /* Improved heading styles */
+        h1 {
+          font-size: 24px;
+          font-weight: 700;
+          margin-top: 20px;
+          margin-bottom: 10px;
+          border-bottom: 1px solid #eaeaea;
+          padding-bottom: 5px;
+        }
+        
+        h2 {
+          font-size: 20px;
+          font-weight: 600;
+          margin-top: 18px;
+          margin-bottom: 8px;
+        }
+        
+        h3 {
+          font-size: 18px;
+          font-weight: 600;
+          margin-top: 16px;
+          margin-bottom: 6px;
+        }
+        
+        /* List styling */
+        ul {
+          list-style-type: disc;
+          padding-left: 24px;
+          margin: 10px 0;
+        }
+        
+        ol {
+          list-style-type: decimal;
+          padding-left: 24px;
+          margin: 10px 0;
+        }
+        
+        li {
+          margin-bottom: 4px;
+          color: #000000 !important;
+        }
+        
+        /* Text formatting */
+        strong {
+          font-weight: 700;
+          color: #000000 !important;
+        }
+        
+        em {
+          font-style: italic;
+          color: #000000 !important;
+        }
+        
+        p {
+          margin: 10px 0;
+          line-height: 1.5;
+          color: #000000 !important;
+        }
+        
         /* Ensure math expressions are black */
         .katex, .katex-display, .katex-inline {
           color: #000000 !important;
@@ -491,7 +550,7 @@ export function PdfGenerator({ markdown, fileName, taskType }: PdfGeneratorProps
           border-bottom-style: solid !important;
           border-bottom-color: #000000 !important;
           position: relative !important;
-          top: 0.65em !important;
+          top: 0.5em !important;
           margin: 0.15em 0 !important; /* Slightly increased margin */
         }
         
@@ -516,9 +575,163 @@ export function PdfGenerator({ markdown, fileName, taskType }: PdfGeneratorProps
         /* Ensure code blocks have black text */
         pre, code {
           color: #000000 !important;
+          background-color: #f5f5f5;
+          padding: 8px;
+          border-radius: 4px;
+          font-family: monospace;
         }
       `
       contentContainer.appendChild(customStyle)
+      
+      // Add custom CSS to ensure proper academic formatting
+      const academicStyle = document.createElement("style")
+      academicStyle.textContent = `
+        /* Base academic formatting styles */
+        body, p, div {
+          font-family: 'Georgia', 'Times New Roman', serif;
+          font-size: 12pt;
+          line-height: 1.5;
+          color: #000000;
+        }
+        
+        /* Section Hierarchy styling as specified */
+        h1 {
+          font-size: 20pt;
+          font-weight: 700;
+          text-align: center;
+          margin-top: 24pt;
+          margin-bottom: 12pt;
+          color: #000000;
+        }
+        
+        h2 {
+          font-size: 16pt;
+          font-weight: 700;
+          text-align: left;
+          margin-top: 18pt;
+          margin-bottom: 10pt;
+          color: #000000;
+        }
+        
+        h3 {
+          font-size: 14pt;
+          font-weight: 600;
+          text-align: left;
+          margin-top: 16pt;
+          margin-bottom: 8pt;
+          color: #000000;
+        }
+        
+        h4 {
+          font-size: 12pt;
+          font-weight: 600;
+          font-style: italic;
+          margin-top: 14pt;
+          margin-bottom: 6pt;
+          color: #000000;
+        }
+        
+        /* Text formatting rules */
+        strong {
+          font-weight: 700;
+          color: #000000;
+        }
+        
+        em {
+          font-style: italic;
+          color: #000000;
+        }
+        
+        /* List formatting */
+        ul {
+          list-style-type: disc;
+          padding-left: 24pt;
+          margin: 8pt 0;
+        }
+        
+        ol {
+          list-style-type: decimal;
+          padding-left: 24pt;
+          margin: 8pt 0;
+          line-height: 1.0;
+        }
+        
+        li {
+          margin-bottom: 6pt;
+          color: #000000;
+          line-height: 1.4;
+        }
+        
+        /* Math formatting */
+        .katex-display {
+          text-align: center;
+          margin: 12pt 0;
+        }
+        
+        /* Improve spacing for inline math */
+        .katex {
+          padding: 0 2pt;
+        }
+        
+        /* Section breaks */
+        hr {
+          border: 0;
+          height: 1pt;
+          background-color: #cccccc;
+          margin: 24pt 0;
+        }
+        
+        /* Practice questions format */
+        .practice-question {
+          margin: 12pt 0;
+          padding: 8pt;
+          background-color: #f9f9f9;
+        }
+        
+        .practice-question strong {
+          font-weight: 700;
+        }
+        
+        /* Adjust spacing in fractions to position the line higher */
+        .katex .mfrac .frac-line {
+          border-bottom-width: 1px !important;
+          border-bottom-style: solid !important;
+          border-bottom-color: #000000 !important;
+          position: relative !important;
+          top: 0.5em !important;
+          margin: 0.15em 0 !important;
+        }
+        
+        /* Proper spacing for fractions */
+        .katex .mfrac .mfracnum {
+          display: inline-block !important;
+          margin-bottom: 0.6em !important;
+        }
+        
+        .katex .mfrac .mfracden {
+          display: inline-block !important;
+          margin-top: 0.15em !important;
+        }
+        
+        /* Control overall spacing of the fraction */
+        .katex .mfrac {
+          display: inline-block !important;
+          vertical-align: middle !important;
+          margin: 0.1em 0 !important;
+        }
+        
+        /* Footer styling */
+        .pdf-footer {
+          margin-top: 24pt;
+          border-top: 1pt solid #eaeaea;
+          padding-top: 8pt;
+          font-size: 9pt;
+          color: #000000;
+          text-align: center;
+        }
+      `
+      contentContainer.appendChild(academicStyle)
+      
       tempDiv.appendChild(contentContainer)
 
       // Add footer

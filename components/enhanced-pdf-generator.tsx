@@ -535,21 +535,159 @@ export function EnhancedPdfGenerator({ markdown, fileName, taskType }: EnhancedP
                   trust: true 
                 }]
               ]}
-              components={{
-                p: ({ node, ...props }) => <p style={{ color: "rgb(0,0,0)" }} {...props} />,
-                h1: ({ node, ...props }) => <h1 style={{ color: "rgb(0,0,0)" }} {...props} />,
-                h2: ({ node, ...props }) => <h2 style={{ color: "rgb(0,0,0)" }} {...props} />,
-                h3: ({ node, ...props }) => <h3 style={{ color: "rgb(0,0,0)" }} {...props} />,
-                h4: ({ node, ...props }) => <h4 style={{ color: "rgb(0,0,0)" }} {...props} />,
-                h5: ({ node, ...props }) => <h5 style={{ color: "rgb(0,0,0)" }} {...props} />,
-                h6: ({ node, ...props }) => <h6 style={{ color: "rgb(0,0,0)" }} {...props} />,
-                li: ({ node, ...props }) => <li style={{ color: "rgb(0,0,0)" }} {...props} />,
-                a: ({ node, ...props }) => <a style={{ color: "rgb(0,0,0)" }} {...props} />,
-                strong: ({ node, ...props }) => <strong style={{ color: "rgb(0,0,0)" }} {...props} />,
-                em: ({ node, ...props }) => <em style={{ color: "rgb(0,0,0)" }} {...props} />,
-                code: ({ node, ...props }) => <code style={{ color: "rgb(0,0,0)" }} {...props} />,
-                pre: ({ node, ...props }) => <pre style={{ color: "rgb(0,0,0)" }} {...props} />
-              }}
+components={{
+  p: ({ node, ...props }: any) => (
+    <p style={{
+      color: "rgb(0,0,0)",
+      fontSize: "11pt",
+      margin: "10pt 0",
+      lineHeight: "1.5",
+      textAlign: "left"
+    }} {...props} />
+  ),
+
+  h1: ({ node, ...props }: any) => (
+    <h1 style={{
+      color: "rgb(0,0,0)",
+      fontSize: "18pt",
+      fontWeight: 700,
+      textAlign: "center",
+      marginTop: "24pt",
+      marginBottom: "12pt",
+      borderBottom: "1px solid #d0d0d0",
+      paddingBottom: "4pt"
+    }} {...props} />
+  ),
+
+  h2: ({ node, ...props }: any) => (
+    <h2 style={{
+      color: "rgb(0,0,0)",
+      fontSize: "16pt",
+      fontWeight: 700,
+      marginTop: "18pt",
+      marginBottom: "10pt",
+      borderBottom: "1px solid #d0d0d0",
+      paddingBottom: "4pt"
+    }} {...props} />
+  ),
+
+  h3: ({ node, ...props }: any) => (
+    <h3 style={{
+      color: "rgb(0,0,0)",
+      fontSize: "14pt",
+      fontWeight: 600,
+      marginTop: "16pt",
+      marginBottom: "8pt"
+    }} {...props} />
+  ),
+
+  h4: ({ node, ...props }: any) => (
+    <h4 style={{
+      color: "rgb(0,0,0)",
+      fontSize: "12pt",
+      fontWeight: 600,
+      fontStyle: "italic",
+      marginTop: "14pt",
+      marginBottom: "6pt"
+    }} {...props} />
+  ),
+
+  h5: ({ node, ...props }: any) => (
+    <h5 style={{
+      color: "rgb(0,0,0)",
+      fontSize: "11pt",
+      fontWeight: 600,
+      marginTop: "12pt",
+      marginBottom: "5pt"
+    }} {...props} />
+  ),
+
+  h6: ({ node, ...props }: any) => (
+    <h6 style={{
+      color: "rgb(0,0,0)",
+      fontSize: "10.5pt",
+      fontWeight: 600,
+      fontStyle: "italic",
+      marginTop: "10pt",
+      marginBottom: "4pt"
+    }} {...props} />
+  ),
+
+  li: ({ node, ...props }: any) => (
+    <li style={{
+      color: "rgb(0,0,0)",
+      fontSize: "11pt",
+      marginBottom: "6pt",
+      lineHeight: "1.5"
+    }} {...props} />
+  ),
+
+  ul: ({ node, ...props }: any) => (
+    <ul style={{
+      listStyleType: "disc",
+      paddingLeft: "24pt",
+      margin: "10pt 0"
+    }} {...props} />
+  ),
+
+  ol: ({ node, ...props }: any) => (
+    <ol style={{
+      listStyleType: "decimal",
+      paddingLeft: "24pt",
+      margin: "10pt 0"
+    }} {...props} />
+  ),
+
+  a: ({ node, ...props }: any) => (
+    <a style={{
+      color: "#0070f3",
+      textDecoration: "none"
+    }} {...props} />
+  ),
+
+  strong: ({ node, ...props }: any) => (
+    <strong style={{
+      fontWeight: 700,
+      color: "rgb(0,0,0)"
+    }} {...props} />
+  ),
+
+  em: ({ node, ...props }: any) => (
+    <em style={{
+      fontStyle: "italic",
+      color: "rgb(0,0,0)"
+    }} {...props} />
+  ),
+
+  code: ({ node, inline, ...props }: any) =>
+    inline ? (
+      <code style={{
+        fontFamily: "monospace",
+        fontSize: "0.9em",
+        padding: "0.2rem 0.4rem",
+        backgroundColor: "#f5f5f5",
+        borderRadius: "0.25rem",
+        color: "rgb(0,0,0)"
+      }} {...props} />
+    ) : (
+      <code style={{
+        color: "rgb(0,0,0)"
+      }} {...props} />
+    ),
+
+  pre: ({ node, ...props }: any) => (
+    <pre style={{
+      color: "rgb(0,0,0)",
+      backgroundColor: "#f5f5f5",
+      padding: "1rem",
+      borderRadius: "0.35rem",
+      overflowX: "auto",
+      margin: "2rem 0",
+      fontSize: "0.95rem",
+      lineHeight: "1.5"
+    }} {...props} />
+  ),
+}}
             >
               {processedMarkdown}
             </ReactMarkdown>
@@ -644,6 +782,369 @@ export function EnhancedPdfGenerator({ markdown, fileName, taskType }: EnhancedP
                 ;(line as HTMLElement).style.borderBottomWidth = "1px"
                 ;(line as HTMLElement).style.borderBottomColor = "rgb(0,0,0)"
               })
+
+              // Add custom styles for enhanced formatting in PDFs
+              const enhancedFormattingStyle = document.createElement("style")
+              enhancedFormattingStyle.textContent = `
+                /* 📦 Core Wrapper */
+#markdown-content-container.pdf-export,
+.pdf-export {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.5;
+  color: #000000;
+}
+
+/* 🏷 Headings */
+.pdf-export h1 {
+  font-size: 18pt;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 24pt;
+  margin-bottom: 12pt;
+  color: #000000;
+  border-bottom: 1px solid #d0d0d0;
+  padding-bottom: 4pt;
+}
+
+.pdf-export h2 {
+  font-size: 16pt;
+  font-weight: 700;
+  margin-top: 18pt;
+  margin-bottom: 10pt;
+  color: #000000;
+  border-bottom: 1px solid #d0d0d0;
+  padding-bottom: 4pt;
+}
+
+.pdf-export h3 {
+  font-size: 14pt;
+  font-weight: 600;
+  margin-top: 16pt;
+  margin-bottom: 8pt;
+  color: #000000;
+}
+
+.pdf-export h4 {
+  font-size: 12pt;
+  font-weight: 600;
+  font-style: italic;
+  margin-top: 14pt;
+  margin-bottom: 6pt;
+  color: #000000;
+}
+
+/* 📝 Paragraphs */
+.pdf-export p {
+  font-size: 11pt;
+  margin: 10pt 0;
+  line-height: 1.5;
+  color: #000000;
+  text-align: left;
+}
+
+/* 📋 Lists */
+.pdf-export ul {
+  list-style-type: disc;
+  padding-left: 24pt;
+  margin: 10pt 0;
+}
+
+.pdf-export ol {
+  list-style-type: decimal;
+  padding-left: 24pt;
+  margin: 10pt 0;
+  line-height: 1.5;
+}
+
+.pdf-export li {
+  font-size: 11pt;
+  margin-bottom: 6pt;
+  color: #000000;
+  line-height: 1.5;
+}
+
+/* ✅ List Marker Fix */
+.pdf-export ul li::marker,
+.pdf-export ol li::marker {
+  color: #000000;
+}
+
+/* 🔤 Text emphasis */
+.pdf-export strong {
+  font-weight: 700;
+  color: #000000;
+}
+
+.pdf-export em {
+  font-style: italic;
+  color: #000000;
+}
+
+/* ⬇️ Horizontal rule */
+.pdf-export hr {
+  border: 0;
+  height: 1pt;
+  background-color: #cccccc;
+  margin: 24pt 0;
+}
+
+/* ❓ Blockquotes (for examples, quotes, questions) */
+.pdf-export blockquote {
+  border-left: 3pt solid #d0d0d0;
+  background-color: #f9f9f9;
+  margin: 14pt 0;
+  padding: 10pt 12pt;
+  font-style: italic;
+  color: #000000;
+}
+
+/* 📊 Tables */
+.pdf-export table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.pdf-export th,
+.pdf-export td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  font-size: 11pt;
+  color: #000000;
+}
+
+.pdf-export th {
+  background-color: #f0f0f0;
+  font-weight: 700;
+}
+
+/* 📐 Code blocks */
+.pdf-export pre {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 0.35rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000000;
+}
+
+.pdf-export code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.4rem;
+  background-color: #f5f5f5;
+  border-radius: 0.25rem;
+  color: #000000;
+}
+
+/* 🧠 Practice question box */
+.pdf-export .practice-question {
+  margin: 14pt 0;
+  padding: 10pt;
+  background-color: #f9f9f9;
+  border-left: 3pt solid #d0d0d0;
+}
+
+/* ➗ Math (KaTeX) formatting */
+.pdf-export .katex-display {
+  text-align: center;
+  margin: 16pt 0;
+  padding: 4pt 0;
+}
+
+.pdf-export .katex-display > .katex {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+.pdf-export .katex .mfrac {
+  margin: 0.2em 0;
+}
+
+.pdf-export .katex .mfrac .frac-line {
+  border-bottom-width: 1px !important;
+  border-bottom-color: #000000 !important;
+}
+
+/* 🦶 Footer */
+.pdf-export .pdf-footer {
+  margin-top: 24pt;
+  border-top: 1pt solid #eaeaea;
+  padding-top: 8pt;
+  font-size: 9pt;
+  color: #000000;
+  text-align: center;
+}
+
+/* 🏷️ Optional Keyword Highlighting */
+.pdf-export .keyword-label {
+  background-color: #f0f0f0;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+  font-weight: 700;
+  color: #000000;
+}
+
+              `
+              clonedContent.appendChild(enhancedFormattingStyle)
+              
+              // Special handling for list markers to ensure they're black
+              const listStyleFix = clonedDoc.createElement('style')
+              listStyleFix.innerHTML = `
+                #markdown-content-container ul li::marker {
+                  color: #000000 !important;
+                }
+                #markdown-content-container ol li::marker {
+                  color: #000000 !important;
+                }
+              `
+              clonedDoc.head.appendChild(listStyleFix)
+
+              // Apply academic formatting guidelines to the cloned document
+              const academicStyles = clonedDoc.createElement('style')
+              academicStyles.innerHTML = `
+                /* Academic document formatting */
+                body {
+                  font-family: 'Georgia', 'Times New Roman', serif;
+                  line-height: 1.5;
+                  color: #000000;
+                }
+                
+                /* Clear hierarchical structure for headings */
+                h1 {
+                  font-size: 18pt;
+                  font-weight: 700;
+                  text-align: center;
+                  margin-top: 24pt;
+                  margin-bottom: 12pt;
+                  color: #000000;
+                }
+                
+                h2 {
+                  font-size: 16pt;
+                  font-weight: 700;
+                  text-align: left;
+                  margin-top: 18pt;
+                  margin-bottom: 10pt;
+                  color: #000000;
+                  border-bottom: 1px solid #d0d0d0;
+                  padding-bottom: 4pt;
+                }
+                
+                h3 {
+                  font-size: 14pt;
+                  font-weight: 600;
+                  text-align: left;
+                  margin-top: 16pt;
+                  margin-bottom: 8pt;
+                  color: #000000;
+                }
+                
+                h4 {
+                  font-size: 12pt;
+                  font-weight: 600;
+                  font-style: italic;
+                  margin-top: 14pt;
+                  margin-bottom: 6pt;
+                  color: #000000;
+                }
+                
+                /* Text body */
+                p {
+                  font-size: 11pt;
+                  margin: 10pt 0;
+                  line-height: 1.5;
+                  color: #000000;
+                  text-align: left;
+                }
+                
+                /* Lists - for concepts under headings */
+                ul {
+                  list-style-type: disc;
+                  padding-left: 24pt;
+                  margin: 10pt 0;
+                }
+                
+                ol {
+                  list-style-type: decimal;
+                  padding-left: 24pt;
+                  margin: 10pt 0;
+                  line-height: 1.5;
+                }
+                
+                li {
+                  font-size: 11pt;
+                  margin-bottom: 6pt;
+                  color: #000000;
+                  line-height: 1.5;
+                }
+                
+                /* Bold text for emphasis and labels */
+                strong {
+                  font-weight: 700;
+                  color: #000000;
+                }
+                
+                /* Italics for examples and theorists */
+                em {
+                  font-style: italic;
+                  color: #000000;
+                }
+                
+                /* Section breaks */
+                hr {
+                  border: 0;
+                  height: 1pt;
+                  background-color: #cccccc;
+                  margin: 24pt 0;
+                }
+                
+                /* Practice question format */
+                .practice-question {
+                  margin: 14pt 0;
+                  padding: 10pt;
+                  background-color: #f9f9f9;
+                  border-left: 3pt solid #d0d0d0;
+                }
+                
+                /* Math formatting - centered and set apart with space */
+                .katex-display {
+                  text-align: center;
+                  margin: 16pt 0;
+                  padding: 4pt 0;
+                }
+                
+                /* Footer for attribution */
+                .pdf-footer {
+                  margin-top: 24pt;
+                  border-top: 1pt solid #eaeaea;
+                  padding-top: 8pt;
+                  font-size: 9pt;
+                  color: #000000;
+                  text-align: center;
+                }
+                
+                /* Fix fraction rendering in equations */
+                .katex .mfrac {
+                  margin: 0.2em 0;
+                }
+                
+                .katex .mfrac .frac-line {
+                  border-bottom-width: 1px !important;
+                  border-bottom-color: #000000 !important;
+                }
+                
+                /* Ensure math takes proper space for readability */
+                .katex-display > .katex {
+                  display: block;
+                  text-align: center;
+                  margin: 1em 0;
+                }
+              `
+              clonedDoc.head.appendChild(academicStyles)
             }
           },
         })
