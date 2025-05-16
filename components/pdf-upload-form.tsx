@@ -9,9 +9,9 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { MarkdownPreview } from "./markdown-preview"
-import { PdfGenerator } from "./pdf-generator"
+
 import { EnhancedPdfGenerator } from "./enhanced-pdf-generator"
-import { WordDocumentGenerator } from "./word-document-generator"
+
 import { Loader2, FileText, Upload, CheckCircle, Copy, Download, AlertCircle, Bot, Info } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 import { useToast } from "@/hooks/use-toast"
@@ -403,31 +403,9 @@ export function PdfUploadForm() {
                       />
                     </Card>
 
-                    <Card className="p-4">
-                      <div className="flex flex-col space-y-2 mb-4">
-                        <h4 className="font-medium">Standard PDF Format</h4>
-                        <p className="text-sm text-muted-foreground">
-                          Download a multi-page PDF with standard formatting.
-                        </p>
-                      </div>
-                      <PdfGenerator
-                        markdown={markdownContent}
-                        fileName={file?.name || "document.pdf"}
-                        taskType={taskType}
-                      />
-                    </Card>
 
-                    <Card className="p-4">
-                      <div className="flex flex-col space-y-2 mb-4">
-                        <h4 className="font-medium">Word Document</h4>
-                        <p className="text-sm text-muted-foreground">Download as a Microsoft Word (.docx) document.</p>
-                      </div>
-                      <WordDocumentGenerator
-                        markdown={markdownContent}
-                        fileName={file?.name || "document.pdf"}
-                        taskType={taskType}
-                      />
-                    </Card>
+                 
+           
                   </div>
                   <div className="mt-2">
                     <Button variant="outline" onClick={copyToClipboard} className="w-full">

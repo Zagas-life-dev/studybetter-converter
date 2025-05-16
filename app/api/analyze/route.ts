@@ -157,7 +157,7 @@ Be thorough and accurate in your analysis.`
         return NextResponse.json(
           {
             error: "Failed to parse response from agent API",
-            details: responseText.substring(0, 500), // Include part of the response for debugging
+            details: responseText.substring(0, 1000), // Include part of the response for debugging
           },
           { status: 500 },
         )
