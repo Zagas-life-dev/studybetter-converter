@@ -173,7 +173,7 @@ export function PdfUploadForm() {
           `Failed to parse server response: ${e.message}\n\nRaw response: ${responseText.substring(0, 100)}...`,
         )
       }
-
+// hey
       if (response.ok) {
         setProcessingStep("Finalizing results")
         setProgress(90)
